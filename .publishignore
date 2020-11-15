@@ -1,0 +1,6 @@
+.vscode\
+scripts\
+.publishignore
+globals.lua
+readme.md
+.png

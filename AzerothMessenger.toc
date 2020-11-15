@@ -1,0 +1,12 @@
+## Interface: 90001
+## Title: Azeroth Messenger
+## Author: Sellorio
+## Version: 1.0.0
+## OptionalDeps: ElvUI
+
+## SavedVariables: AzerothMessengerData
+
+src/constants.lua
+src/config.lua
+
+src/main.lua
