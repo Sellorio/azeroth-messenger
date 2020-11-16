@@ -6,6 +6,7 @@ end
 
 local function OnPlayerEnteringWorld()
     AzerothMessenger.Config.Initialize()
+    AzerothMessenger.MainComponent.Initialize()
     f:SetScript("OnUpdate", OnUpdate)
 end
 

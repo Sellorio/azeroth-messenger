@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+    <Script file="src/chat-heads/chat-heads.lua"/>
+    <Frame name="AM_ChatHeadsFrame" virtual="true">
+        <Scripts>
+            <OnLoad>AM_ChatHeadsFrame_Init(self)</OnLoad>
+        </Scripts>
+        <Size x="36" y="36"/>
+        <Frames>
+            <Button parentKey="ChatHeadButton1" inherits="AM_ChatHeadButton"/>
+            <Button parentKey="ChatHeadButton2" inherits="AM_ChatHeadButton"/>
+            <Button parentKey="ChatHeadButton3" inherits="AM_ChatHeadButton">
+                <Anchors>
+                    <Anchor point="CENTRE" relativePoint="CENTER" x="0" y="0" />
+                </Anchors>
+            </Button>
+            <Button parentKey="ChatHeadButton4" inherits="AM_ChatHeadButton"/>
+            <Button parentKey="ChatHeadButton5" inherits="AM_ChatHeadButton"/>
+        </Frames>
+    </Frame>
+</Ui>

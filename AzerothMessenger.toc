@@ -6,7 +6,13 @@
 
 ## SavedVariables: AzerothMessengerData
 
+src/components.lua
 src/constants.lua
 src/config.lua
+
+src/chat-head/background-colours.lua
+src/chat-head/chat-head.xml
+src/chat-heads/chat-heads.xml
+src/azeroth-messenger/azeroth-messenger.xml
 
 src/main.lua
