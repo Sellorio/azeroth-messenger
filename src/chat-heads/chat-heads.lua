@@ -82,7 +82,7 @@ local function ItemsChanged(self, value)
     end
 
     self:SelectedItem(nil)
-    self.SelectionChanged:Emit()
+    self.SelectionChanged:Emit(nil)
 end
 
 local function SelectedItemChanged(self, selectedItem)
@@ -97,15 +97,13 @@ end
 local function ChatHeadClicked(self, chatHead)
     if chatHead:IsVisible() then
         if chatHead:IsChecked() then
-            print("Selected item set to value")
             local chatHeadIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
             self:SelectedItem(self:Items()[chatHeadIndex])
         else
-            print("Selected item set to nil")
             self:SelectedItem(nil)
         end
 
-        self.SelectionChanged:Emit()
+        self.SelectionChanged:Emit(self:SelectedItem())
     end
 end
 

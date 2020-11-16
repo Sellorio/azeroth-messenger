@@ -3,6 +3,7 @@
     <Frame name="AzerothMessengerFrame" toplevel="true" parent="UIParent" enableMouse="true" movable="true" hidden="true">
         <Scripts>
             <OnLoad>AzerothMessengerFrame_Init(self)</OnLoad>
+            <OnShow>AzerothMessengerFrame_OnShow(self)</OnShow>
             <OnUpdate>AzerothMessengerFrame_OnUpdate(self)</OnUpdate>
         </Scripts>
         <Size x="36" y="36"/>

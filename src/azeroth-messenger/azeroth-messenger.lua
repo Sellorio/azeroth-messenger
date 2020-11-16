@@ -35,21 +35,14 @@ local function UpdateLayout(self)
     end
 end
 
-local function UpdateChat(self)
-    local selectedItem = self.ChatHeads:SelectedItem()
-
-    if selectedItem == nil then
-        self.Chat:IsVisible(false)
-    else
-        self.Chat:IsVisible(true)
-        -- update Chat with newly selected conversation, move IsVisible call to be inside Chat
-    end
-end
-
 function AzerothMessengerFrame_Init(self)
     self.ChatHeads.OnDragStart:Listen(function() StartMoving(self) end)
     self.ChatHeads.OnDragStop:Listen(function() StopMoving(self) end)
-    self.ChatHeads.SelectionChanged:Listen(function() UpdateChat(self) end)
+    self.ChatHeads.SelectionChanged:Listen(function(selectedItem) self.Chat:Conversation(selectedItem) end)
+end
+
+function AzerothMessengerFrame_OnShow(self)
+    UpdateLayout(self)
 end
 
 function AzerothMessengerFrame_OnUpdate(self)

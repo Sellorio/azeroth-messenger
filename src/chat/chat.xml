@@ -14,28 +14,28 @@
 					</Anchors>
 					<Color r="0.13" g="0.1" b="0.13" a="1"/>
                 </Texture>
-				<Texture parentKey="BorderTextureRight" file="Interface/Buttons/WHITE8x8">
+				<Texture parentKey="BorderRightTexture" file="Interface/Buttons/WHITE8x8">
                     <Size x="3" y="250"/>
                     <Anchors>
 						<Anchor point="LEFT" relativePoint="RIGHT" x="-10" y="0"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
-				<Texture parentKey="BorderTextureLeft" file="Interface/Buttons/WHITE8x8">
+				<Texture parentKey="BorderLeftTexture" file="Interface/Buttons/WHITE8x8">
                     <Size x="1" y="250"/>
                     <Anchors>
 						<Anchor point="RIGHT" relativePoint="LEFT" x="10" y="0"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
-				<Texture parentKey="BorderTextureTop" file="Interface/Buttons/WHITE8x8">
+				<Texture parentKey="BorderTopTexture" file="Interface/Buttons/WHITE8x8">
                     <Size x="222" y="1"/>
                     <Anchors>
 						<Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-10"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
-				<Texture parentKey="BorderTextureBottom" file="Interface/Buttons/WHITE8x8">
+				<Texture parentKey="BorderBottomTexture" file="Interface/Buttons/WHITE8x8">
                     <Size x="222" y="1"/>
                     <Anchors>
 						<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="10"/>
@@ -43,6 +43,14 @@
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
 			</Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="TitleLabel" inherits="Number15Font">
+                    <Size x="220" y="15"/>
+                    <Anchors>
+						<Anchor point="TOP" x="0" y="-13"/>
+					</Anchors>
+                </FontString>
+            </Layer>
         </Layers>
         <Frames>
 

@@ -35,10 +35,16 @@ local function ColorChanged(self, value)
 end
 
 local function ConversationTypeChanged(self, value)
+    local color;
+
     if value == ConversationTypes.Character then
-        self.SelectionTexture:SetVertexColor(250.0 / 255, 168.0 / 255, 250.0 / 255)
+        color = AzerothMessenger.Constants.Colors.CharacterChat
     elseif value == ConversationTypes.Battlenet then
-        self.SelectionTexture:SetVertexColor(144.0 / 255, 216.0 / 255, 228.0 / 255)
+        color = AzerothMessenger.Constants.Colors.BattlenetChat
+    end
+
+    if color then
+        self.SelectionTexture:SetVertexColor(color.Red, color.Green, color.Blue)
     end
 end
 
