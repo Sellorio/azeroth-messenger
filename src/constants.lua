@@ -13,6 +13,12 @@ AzerothMessenger.Constants = {
     Colors = {
         CharacterChat = { Red = 0.98, Green = 0.68, Blue = 0.98 },
         BattlenetChat = { Red = 0.56, Green = 0.85, Blue = 0.89 }
+    },
+    AnchorPoints = {
+        Top = 1,
+        Bottom = 2,
+        Left = 3,
+        Right = 4
     }
 }
 
