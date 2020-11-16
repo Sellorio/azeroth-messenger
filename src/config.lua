@@ -14,6 +14,7 @@ AzerothMessenger.Config.Initialize = function()
         Conversations = {
             -- {
             --     Identifier = "battletag#1234" or "Character-Realm",
+            --     Type = "battlenet" or "character",
             --     Messages = {
             --         {
             --             CreatedAt = time(), -- numerical absolute time in seconds
@@ -22,7 +23,7 @@ AzerothMessenger.Config.Initialize = function()
             --             Content = "text"
             --         }
             --     },
-            --     Colour = { Red = 1.0, Green = 1.0, Blue = 1.0 }
+            --     Color = { Red = 1.0, Green = 1.0, Blue = 1.0 }
             -- }
         },
         ActiveConversations = {

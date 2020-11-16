@@ -1,5 +1,4 @@
-AzerothMessenger = AzerothMessenger or {}
-AzerothMessenger.MainComponent = {}
+local Orientations = AzerothMessenger.Constants.Orientations
 
 local IsMoving = false
 
@@ -30,24 +29,27 @@ local function UpdateLayout(self)
     local magnitudeY = math.abs(y / screenHeight - 0.5)
 
     if magnitudeX > magnitudeY then
-        self.ChatHeads:Orientation("vertical")
+        self.ChatHeads:Orientation(Orientations.Vertical)
     else
-        self.ChatHeads:Orientation("horizontal")
+        self.ChatHeads:Orientation(Orientations.Horizontal)
     end
 end
 
-AzerothMessenger.MainComponent.Initialize = function()
-    local framePosition = AzerothMessengerData.Settings.FramePosition
+local function UpdateChat(self)
+    local selectedItem = self.ChatHeads:SelectedItem()
 
-    AzerothMessengerFrame:Show()
-    AzerothMessengerFrame:ClearAllPoints()
-    AzerothMessengerFrame:SetPoint(framePosition.RelativePoint, framePosition.X, framePosition.Y)
-    UpdateLayout(AzerothMessengerFrame)
+    if selectedItem == nil then
+        self.Chat:IsVisible(false)
+    else
+        self.Chat:IsVisible(true)
+        -- update Chat with newly selected conversation, move IsVisible call to be inside Chat
+    end
 end
 
 function AzerothMessengerFrame_Init(self)
     self.ChatHeads.OnDragStart:Listen(function() StartMoving(self) end)
     self.ChatHeads.OnDragStop:Listen(function() StopMoving(self) end)
+    self.ChatHeads.SelectionChanged:Listen(function() UpdateChat(self) end)
 end
 
 function AzerothMessengerFrame_OnUpdate(self)

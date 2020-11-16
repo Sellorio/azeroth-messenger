@@ -1,0 +1,51 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+    <Script file="src/chat/chat.lua"/>
+    <Frame name="AM_ChatFrame" virtual="true">
+        <Scripts>
+            <OnLoad>AM_ChatFrame_Init(self)</OnLoad>
+        </Scripts>
+        <Size x="240" y="268"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+				<Texture parentKey="BackgroundTexture" file="Interface/Buttons/WHITE8x8">
+                    <Size x="220" y="248"/>
+                    <Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+					<Color r="0.13" g="0.1" b="0.13" a="1"/>
+                </Texture>
+				<Texture parentKey="BorderTextureRight" file="Interface/Buttons/WHITE8x8">
+                    <Size x="3" y="250"/>
+                    <Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT" x="-10" y="0"/>
+					</Anchors>
+					<Color r="0.65" g="0.44" b="0.65" a="1"/>
+                </Texture>
+				<Texture parentKey="BorderTextureLeft" file="Interface/Buttons/WHITE8x8">
+                    <Size x="1" y="250"/>
+                    <Anchors>
+						<Anchor point="RIGHT" relativePoint="LEFT" x="10" y="0"/>
+					</Anchors>
+					<Color r="0.65" g="0.44" b="0.65" a="1"/>
+                </Texture>
+				<Texture parentKey="BorderTextureTop" file="Interface/Buttons/WHITE8x8">
+                    <Size x="222" y="1"/>
+                    <Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-10"/>
+					</Anchors>
+					<Color r="0.65" g="0.44" b="0.65" a="1"/>
+                </Texture>
+				<Texture parentKey="BorderTextureBottom" file="Interface/Buttons/WHITE8x8">
+                    <Size x="222" y="1"/>
+                    <Anchors>
+						<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="10"/>
+					</Anchors>
+					<Color r="0.65" g="0.44" b="0.65" a="1"/>
+                </Texture>
+			</Layer>
+        </Layers>
+        <Frames>
+
+        </Frames>
+    </Frame>
+</Ui>

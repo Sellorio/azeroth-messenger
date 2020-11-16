@@ -6,15 +6,34 @@
         </Scripts>
         <Size x="36" y="36"/>
         <Frames>
-            <Button parentKey="ChatHeadButton1" inherits="AM_ChatHeadButton"/>
-            <Button parentKey="ChatHeadButton2" inherits="AM_ChatHeadButton"/>
+            <Button parentKey="ChatHeadButton1" inherits="AM_ChatHeadButton">
+                <Scripts>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                </Scripts>
+            </Button>
+            <Button parentKey="ChatHeadButton2" inherits="AM_ChatHeadButton">
+                <Scripts>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                </Scripts>
+            </Button>
             <Button parentKey="ChatHeadButton3" inherits="AM_ChatHeadButton">
+                <Scripts>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                </Scripts>
                 <Anchors>
-                    <Anchor point="CENTRE" relativePoint="CENTER" x="0" y="0" />
+                    <Anchor point="CENTER" relativePoint="CENTER" x="0" y="0" />
                 </Anchors>
             </Button>
-            <Button parentKey="ChatHeadButton4" inherits="AM_ChatHeadButton"/>
-            <Button parentKey="ChatHeadButton5" inherits="AM_ChatHeadButton"/>
+            <Button parentKey="ChatHeadButton4" inherits="AM_ChatHeadButton">
+                <Scripts>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                </Scripts>
+            </Button>
+            <Button parentKey="ChatHeadButton5" inherits="AM_ChatHeadButton">
+                <Scripts>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                </Scripts>
+            </Button>
         </Frames>
     </Frame>
 </Ui>

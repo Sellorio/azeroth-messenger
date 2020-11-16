@@ -10,9 +10,7 @@
             <OnDragStop>self.OnDragStop:Emit()</OnDragStop>
             <OnClick>self:IsChecked(not self:IsChecked())</OnClick>
         </Scripts>
-		<Size>
-			<AbsDimension x="36" y="36"/>
-		</Size>
+        <Size x="36" y="36"/>
         <Layers>
             <Layer level="BACKGROUND" textureSubLevel="1">
 				<Texture parentKey="SelectionTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">

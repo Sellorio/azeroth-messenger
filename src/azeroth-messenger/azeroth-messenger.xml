@@ -11,6 +11,11 @@
         </Anchors>
         <Frames>
             <Frame parentKey="ChatHeads" inherits="AM_ChatHeadsFrame"/>
+            <Frame parentKey="Chat" inherits="AM_ChatFrame">
+                <Anchors>
+                    <Anchor point="RIGHT" relativePoint="LEFT" x="0" y="0" />
+                </Anchors>
+            </Frame>
         </Frames>
     </Frame>
 </Ui>

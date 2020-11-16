@@ -1,9 +1,12 @@
+local ConversationTypes = AzerothMessenger.Constants.ConversationTypes
+local Orientations = AzerothMessenger.Constants.Orientations
+
 local function ForEachChatHead(self, action)
     local i = 1
     local chatHead = self["ChatHeadButton"..i]
 
     while chatHead ~= nil do
-        action(chatHead)
+        action(chatHead, i)
         i = i + 1
         chatHead = self["ChatHeadButton"..i]
     end
@@ -13,12 +16,11 @@ local function OrientationChanged(self, value)
     local ChatHeadMargin = AzerothMessenger.Constants.ChatHeadMargin
     local afterCenter = false
 
-    if value == "horizontal" then
+    if value == Orientations.Horizontal then
         ForEachChatHead(self, function(chatHead)
             local childIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
             local relativePoint = select(3, chatHead:GetPoint())
-            print(tostring(childIndex)..":")
-            print(chatHead:GetPoint())
+
             if relativePoint == "CENTER" then
                 afterCenter = true
                 chatHead:ClearAllPoints()
@@ -31,12 +33,11 @@ local function OrientationChanged(self, value)
                 chatHead:SetPoint("RIGHT", self["ChatHeadButton"..(childIndex + 1)], "LEFT", -ChatHeadMargin, 0)
             end
         end)
-    elseif value == "vertical" then
+    elseif value == Orientations.Vertical then
         ForEachChatHead(self, function(chatHead)
             local childIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
             local relativePoint = select(3, chatHead:GetPoint())
-            print(tostring(childIndex)..":")
-            print(chatHead:GetPoint())
+
             if relativePoint == "CENTER" then
                 afterCenter = true
                 chatHead:ClearAllPoints()
@@ -52,16 +53,81 @@ local function OrientationChanged(self, value)
     end
 end
 
+-- uses same object structure as Conversations items in Config
+local function ItemsChanged(self, value)
+    local selectedItem = self:SelectedItem()
+
+    ForEachChatHead(self, function(chatHead, i)
+        local item = value and value[i]
+
+        if item then
+            chatHead:ConversationIdentifier(item.Identifier)
+            chatHead:ConversationType(item.Type)
+            chatHead:Color(item.Color)
+            chatHead:IsChecked(item == selectedItem)
+            chatHead:IsVisible(true)
+        else
+            chatHead:IsChecked(false)
+            chatHead:IsVisible(false)
+        end
+    end)
+
+    if value then
+        for i=1, #value do
+            if value[i] == selectedItem then
+                -- allow the SelectedItem to remain set even if the selected conversation is not currently displayed as a chat head
+                return
+            end
+        end
+    end
+
+    self:SelectedItem(nil)
+    self.SelectionChanged:Emit()
+end
+
+local function SelectedItemChanged(self, selectedItem)
+    local items = self:Items()
+
+    ForEachChatHead(self, function(chatHead, i)
+        local item = items[i]
+        chatHead:IsChecked(item == selectedItem)
+    end)
+end
+
+local function ChatHeadClicked(self, chatHead)
+    if chatHead:IsVisible() then
+        if chatHead:IsChecked() then
+            print("Selected item set to value")
+            local chatHeadIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
+            self:SelectedItem(self:Items()[chatHeadIndex])
+        else
+            print("Selected item set to nil")
+            self:SelectedItem(nil)
+        end
+
+        self.SelectionChanged:Emit()
+    end
+end
+
 function AM_ChatHeadsFrame_Init(self)
     local Property = AzerothMessenger.Components.Property
     local Event = AzerothMessenger.Components.Event
 
-    self.Orientation    = Property("_orientation", OrientationChanged)
+    self.Orientation        = Property("_orientation", OrientationChanged)
+    self.Items              = Property("_items", ItemsChanged)
+    self.SelectedItem       = Property("_selectedItem", SelectedItemChanged)
 
-    self.OnDragStart    = Event()
-    self.OnDragStop     = Event()
+    self.OnDragStart        = Event()
+    self.OnDragStop         = Event()
+    self.SelectionChanged   = Event()
 
-    self:Orientation("vertical")
+    self.ChatHeadClicked = ChatHeadClicked
+
+    self:Orientation(Orientations.Vertical)
+    self:Items({
+        { Identifier = "Sellorio#1234", Type = ConversationTypes.Battlenet, Color = AzerothMessenger.ChatHeadBackgroundColors[1] },
+        { Identifier = "Sellorina-Frostmourne", Type = ConversationTypes.Character, Color = AzerothMessenger.ChatHeadBackgroundColors[2] }
+    })
 
     ForEachChatHead(self, function(chatHead)
         chatHead.OnDragStart:Listen(function() self.OnDragStart:Emit() end)

@@ -1,3 +1,5 @@
+local ConversationTypes = AzerothMessenger.Constants.ConversationTypes
+
 local function GetInitials(identifier)
     local initials = ""
 
@@ -28,14 +30,14 @@ local function GetInitials(identifier)
     return initials
 end
 
-local function ColourChanged(self, value)
+local function ColorChanged(self, value)
     self.IconTexture:SetVertexColor(value.Red, value.Green, value.Blue)
 end
 
 local function ConversationTypeChanged(self, value)
-    if value == "character" then
+    if value == ConversationTypes.Character then
         self.SelectionTexture:SetVertexColor(250.0 / 255, 168.0 / 255, 250.0 / 255)
-    elseif value == "battlenet" then
+    elseif value == ConversationTypes.Battlenet then
         self.SelectionTexture:SetVertexColor(144.0 / 255, 216.0 / 255, 228.0 / 255)
     end
 end
@@ -82,7 +84,7 @@ function AM_ChatHeadButton_Init(self)
     local Property = AzerothMessenger.Components.Property
     local Event = AzerothMessenger.Components.Event
 
-    self.Colour                     = Property("_colour", ColourChanged)
+    self.Color                     = Property("_color", ColorChanged)
     self.ConversationType           = Property("_conversationType", ConversationTypeChanged)
     self.ConversationIdentifier     = Property("_conversationIdentifier", ConversationIdentifierChanged)
     self.IsChecked                  = Property("_isChecked", IsCheckedChanged)
@@ -92,9 +94,9 @@ function AM_ChatHeadButton_Init(self)
     self.OnDragStart                = Event()
     self.OnDragStop                 = Event()
 
-    self:Colour({ Red = 0.3, Green = 0.3, Blue = 0.3 })
+    self:Color({ Red = 0.3, Green = 0.3, Blue = 0.3 })
     self:ConversationIdentifier("Sellorio-Frostmourne")
-    self:ConversationType("character")
+    self:ConversationType(ConversationTypes.Character)
     self:IsChecked(false)
     self:IsVisible(true) -- change to false in production
     self:UnreadMessageCount(0)

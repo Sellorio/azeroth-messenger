@@ -6,7 +6,13 @@ end
 
 local function OnPlayerEnteringWorld()
     AzerothMessenger.Config.Initialize()
-    AzerothMessenger.MainComponent.Initialize()
+
+    local framePosition = AzerothMessengerData.Settings.FramePosition
+    AzerothMessengerFrame:Show()
+    AzerothMessengerFrame:ClearAllPoints()
+    AzerothMessengerFrame:SetPoint(framePosition.RelativePoint, framePosition.X, framePosition.Y)
+    UpdateLayout(AzerothMessengerFrame)
+
     f:SetScript("OnUpdate", OnUpdate)
 end
 

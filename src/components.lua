@@ -2,8 +2,12 @@ AzerothMessenger = AzerothMessenger or {}
 AzerothMessenger.Components = {}
 
 AzerothMessenger.Components.Property = function(fieldName, onChange)
-    return function(self, value)
-        if value ~= nil then
+    return function(self, ...)
+        local data = { n = select("#", ...), ... }
+        local hasValue = data.n > 0
+        local value = data[1]
+
+        if hasValue then
             if value ~= self[fieldName] then
                 self[fieldName] = value
                 onChange(self, value)
