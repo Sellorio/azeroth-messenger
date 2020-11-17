@@ -6,6 +6,8 @@
 
 ## SavedVariables: AzerothMessengerData
 
+textures/index.lua
+
 src/constants.lua
 src/components.lua
 src/config.lua

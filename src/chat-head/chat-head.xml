@@ -21,8 +21,16 @@
                 </Texture>
 			</Layer>
             <Layer level="BACKGROUND" textureSubLevel="2">
-				<Texture parentKey="IconTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">
-                    <Size x="36" y="36"/>
+				<Texture file="Interface/CharacterFrame/TempPortraitAlphaMask">
+                    <Size x="37.8" y="37.5"/>
+                    <Color r="0.1" g="0.1" b="0.1" a="1"/>
+                    <Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+                </Texture>
+				<Texture parentKey="IconTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask"/>
+                <Texture file="Interface/AddOns/AzerothMessenger/Textures/Circle_AlphaGradient_In.tga">
+                    <Color r="0" g="0" b="0" a="0.2"/>
                 </Texture>
 			</Layer>
             <Layer level="BACKGROUND" textureSubLevel="3">
