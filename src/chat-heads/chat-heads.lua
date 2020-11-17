@@ -94,16 +94,24 @@ local function SelectedItemChanged(self, selectedItem)
     end)
 end
 
-local function ChatHeadClicked(self, chatHead)
+local function ChatHeadClicked(self, button, chatHead)
     if chatHead:IsVisible() then
-        if chatHead:IsChecked() then
-            local chatHeadIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
-            self:SelectedItem(self:Items()[chatHeadIndex])
-        else
-            self:SelectedItem(nil)
-        end
+        if button == "LeftButton" then
+            if chatHead:IsChecked() then
+                local chatHeadIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
+                self:SelectedItem(self:Items()[chatHeadIndex])
+            else
+                self:SelectedItem(nil)
+            end
 
-        self.SelectionChanged:Emit(self:SelectedItem())
+            self.SelectionChanged:Emit(self:SelectedItem())
+        elseif button == "MiddleButton" then
+            local chatHeadIndex = AzerothMessenger.Components.GetChildIndex(chatHead)
+            local items = self:Items()
+            local item = table.remove(items, chatHeadIndex)
+            ItemsChanged(self, items)
+            self.ItemRemoved:Emit(item)
+        end
     end
 end
 
@@ -118,6 +126,7 @@ function AM_ChatHeadsFrame_Init(self)
     self.OnDragStart        = Event()
     self.OnDragStop         = Event()
     self.SelectionChanged   = Event()
+    self.ItemRemoved        = Event()
 
     self.ChatHeadClicked = ChatHeadClicked
 

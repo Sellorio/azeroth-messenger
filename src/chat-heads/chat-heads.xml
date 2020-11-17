@@ -8,17 +8,17 @@
         <Frames>
             <Button parentKey="ChatHeadButton1" inherits="AM_ChatHeadButton">
                 <Scripts>
-                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(button, self)</OnClick>
                 </Scripts>
             </Button>
             <Button parentKey="ChatHeadButton2" inherits="AM_ChatHeadButton">
                 <Scripts>
-                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(button, self)</OnClick>
                 </Scripts>
             </Button>
             <Button parentKey="ChatHeadButton3" inherits="AM_ChatHeadButton">
                 <Scripts>
-                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(button, self)</OnClick>
                 </Scripts>
                 <Anchors>
                     <Anchor point="CENTER" relativePoint="CENTER" x="0" y="0" />
@@ -26,12 +26,12 @@
             </Button>
             <Button parentKey="ChatHeadButton4" inherits="AM_ChatHeadButton">
                 <Scripts>
-                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(button, self)</OnClick>
                 </Scripts>
             </Button>
             <Button parentKey="ChatHeadButton5" inherits="AM_ChatHeadButton">
                 <Scripts>
-                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(self)</OnClick>
+                    <OnClick inherit="prepend">self:GetParent():ChatHeadClicked(button, self)</OnClick>
                 </Scripts>
             </Button>
         </Frames>

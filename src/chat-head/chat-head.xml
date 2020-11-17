@@ -4,11 +4,16 @@
         <Scripts>
             <OnLoad>
 				self:RegisterForDrag("LeftButton");
+                self:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
                 AM_ChatHeadButton_Init(self);
             </OnLoad>
-            <OnDragStart>self.OnDragStart:Emit()</OnDragStart>
+            <OnDragStart>if self:IsVisible() then self.OnDragStart:Emit() end</OnDragStart>
             <OnDragStop>self.OnDragStop:Emit()</OnDragStop>
-            <OnClick>self:IsChecked(not self:IsChecked())</OnClick>
+            <OnClick>
+                if button == "LeftButton" then
+                    self:IsChecked(not self:IsChecked())
+                end
+            </OnClick>
         </Scripts>
         <Size x="36" y="36"/>
         <Layers>
