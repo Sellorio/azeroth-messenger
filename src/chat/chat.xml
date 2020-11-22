@@ -1,59 +1,75 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+    <Include file="src/chat-log/chat-log.xml"/>
     <Script file="src/chat/chat.lua"/>
     <Frame name="AM_ChatFrame" enableMouse="true" virtual="true">
         <Scripts>
-            <OnLoad>AM_ChatFrame_Init(self)</OnLoad>
+            <OnLoad>
+                AM_ChatFrame_Init(self);
+
+                self.TitleLabel:ClearAllPoints();
+                self.TitleLabel:SetPoint("TOPLEFT", self.BackgroundTexture, "TOPLEFT", 0, -3);
+                self.TitleLabel:SetPoint("BOTTOMRIGHT", self.BackgroundTexture, "TOPRIGHT", 0, -18);
+            </OnLoad>
         </Scripts>
-        <Size x="240" y="268"/>
+        <Size x="280" y="288"/>
         <Layers>
             <Layer level="BACKGROUND">
 				<Texture parentKey="BackgroundTexture" file="Interface/Buttons/WHITE8x8">
-                    <Size x="220" y="248"/>
                     <Anchors>
-						<Anchor point="CENTER" x="0" y="0"/>
+						<Anchor point="TOPLEFT" x="10" y="-10"/>
+						<Anchor point="BOTTOMRIGHT" x="-10" y="10"/>
 					</Anchors>
 					<Color r="0.13" g="0.1" b="0.13" a="1"/>
                 </Texture>
 				<Texture parentKey="BorderRightTexture" file="Interface/Buttons/WHITE8x8">
-                    <Size x="3" y="250"/>
                     <Anchors>
-						<Anchor point="LEFT" relativePoint="RIGHT" x="-10" y="0"/>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-10" y="-9"/>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="-10" y="9"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
 				<Texture parentKey="BorderLeftTexture" file="Interface/Buttons/WHITE8x8">
-                    <Size x="1" y="250"/>
                     <Anchors>
-						<Anchor point="RIGHT" relativePoint="LEFT" x="10" y="0"/>
+						<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" x="10" y="-9"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" x="10" y="9"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
 				<Texture parentKey="BorderTopTexture" file="Interface/Buttons/WHITE8x8">
-                    <Size x="222" y="1"/>
                     <Anchors>
-						<Anchor point="BOTTOM" relativePoint="TOP" x="0" y="-10"/>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" x="9" y="-10"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" x="-9" y="-10"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
 				<Texture parentKey="BorderBottomTexture" file="Interface/Buttons/WHITE8x8">
-                    <Size x="222" y="1"/>
                     <Anchors>
-						<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="10"/>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="9" y="10"/>
+						<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" x="-9" y="10"/>
 					</Anchors>
 					<Color r="0.65" g="0.44" b="0.65" a="1"/>
                 </Texture>
 			</Layer>
             <Layer level="OVERLAY">
                 <FontString parentKey="TitleLabel" inherits="Number15Font">
-                    <Size x="220" y="15"/>
-                    <Anchors>
-						<Anchor point="TOP" x="0" y="-13"/>
-					</Anchors>
+                    <!-- Anchors set in owner's OnLoad -->
                 </FontString>
             </Layer>
         </Layers>
         <Frames>
-
+            <Frame parentKey="ChatLog" inherits="AM_ChatLogFrame">
+                <Scripts>
+                    <OnLoad inherit="prepend">
+                        self:ClearAllPoints();
+                        self:SetPoint("TOPLEFT", self:GetParent().BackgroundTexture, "TOPLEFT", 5, -21);
+                        self:SetPoint("BOTTOMRIGHT", self:GetParent().BackgroundTexture, "BOTTOMRIGHT", -5, 5);
+                    </OnLoad>
+                </Scripts>
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="20" y="-20"/>
+                    <Anchor point="BOTTOMRIGHT" x="-20" y="20"/>
+                </Anchors>
+            </Frame>
         </Frames>
     </Frame>
 </Ui>

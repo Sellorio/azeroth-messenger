@@ -1,0 +1,70 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+    <Include file="src/chat-log-bubble/fonts.xml"/>
+    <Script file="src/chat-log-bubble/chat-log-bubble.lua"/>
+    <Frame name="AM_ChatLogBubbleFrame" virtual="true">
+        <Scripts>
+            <OnLoad>AM_ChatLogBubbleFrame_Init(self)</OnLoad>
+        </Scripts>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="BorderTopLeftTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">
+                    <TexCoords left="0.0" right="0.5" top="0.0" bottom="0.5"/>
+                    <Size x="10" y="10"/>
+                    <Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+					</Anchors>
+                </Texture>
+                <Texture parentKey="BorderTopRightTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">
+                    <TexCoords left="0.5" right="0.0" top="0.0" bottom="0.5"/>
+                    <Size x="10" y="10"/>
+                    <Anchors>
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+					</Anchors>
+                </Texture>
+                <Texture parentKey="BorderBottomLeftTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">
+                    <TexCoords left="0.0" right="0.5" top="0.5" bottom="0.0"/>
+                    <Size x="10" y="10"/>
+                    <Anchors>
+						<Anchor point="BOTTOMLEFT" x="0" y="0"/>
+					</Anchors>
+                </Texture>
+                <Texture parentKey="BorderBottomRightTexture" file="Interface/CharacterFrame/TempPortraitAlphaMask">
+                    <TexCoords left="0.5" right="0.0" top="0.5" bottom="0.0"/>
+                    <Size x="10" y="10"/>
+                    <Anchors>
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+					</Anchors>
+                </Texture>
+
+                <!-- Anchors for these are set up in code to avoid global names for the above textures -->
+                <Texture parentKey="BorderTopTexture" file="Interface/Buttons/WHITE8x8"/>
+                <Texture parentKey="BorderBottomTexture" file="Interface/Buttons/WHITE8x8"/>
+                <Texture parentKey="BorderLeftTexture" file="Interface/Buttons/WHITE8x8"/>
+                <Texture parentKey="BorderRightTexture" file="Interface/Buttons/WHITE8x8"/>
+                <Texture parentKey="BackgroundTexture" file="Interface/Buttons/WHITE8x8"/>
+                
+                <FontString parentKey="SimulationLabel" inherits="AM_Font_ChatHidden">
+                    <Size x="130"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <EditBox parentKey="MessageText" autoFocus="false" multiLine="true">
+                <Scripts>
+                    <OnLoad>
+                        local parent = self:GetParent()
+                        self:SetHyperlinksEnabled(true);
+                        self:ClearAllPoints();
+                        self:SetPoint("TOPLEFT", parent.BorderTopLeftTexture, "BOTTOMLEFT", 10, 0);
+                        self:SetPoint("BOTTOMRIGHT", parent.BorderBottomRightTexture, "TOPRIGHT", -10, 0);
+                    </OnLoad>
+                    <OnHyperlinkClick>print("Test successful!")</OnHyperlinkClick>
+                    <OnTextChanged>self:GetParent():OnMessageTextChanged()</OnTextChanged>
+					<OnKeyDown>self:GetParent():OnMessageKeyDown(key)</OnKeyDown>
+                    <OnEditFocusLost>self:HighlightText(0, 0)</OnEditFocusLost>
+                </Scripts>
+                <FontString inherits="AM_Font_Chat"/>
+            </EditBox>
+        </Frames>
+    </Frame>
+</Ui>

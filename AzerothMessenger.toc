@@ -12,10 +12,6 @@ src/constants.lua
 src/components.lua
 src/config.lua
 
-src/chat/chat.xml
-src/chat-head/background-colours.lua
-src/chat-head/chat-head.xml
-src/chat-heads/chat-heads.xml
 src/azeroth-messenger/azeroth-messenger.xml
 
 src/main.lua

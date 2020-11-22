@@ -1,0 +1,28 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\..\FrameXML\UI.xsd">
+    <Include file="src/chat-log-bubble/chat-log-bubble.xml"/>
+    <Script file="src/chat-log/chat-log.lua"/>
+    <Frame name="AM_ChatLogFrame" clipChildren="true" virtual="true">
+        <Scripts>
+            <OnLoad>AM_ChatLogFrame_Init(self)</OnLoad>
+        </Scripts>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="BackgroundTexture" file="Interface/Buttons/WHITE8x8">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                    </Anchors>
+                    <Color r="0" g="0" b="0" a="0.4"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="TestBubble" inherits="AM_ChatLogBubbleFrame">
+                <Size x="100" y="30"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="30" y="-50"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>
