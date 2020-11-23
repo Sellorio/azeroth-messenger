@@ -30,4 +30,8 @@
     <Font name="AM_Font_ChatHidden" inherits="AM_Font_Chat" virtual="true">
         <Color r="1" g="1" b="1" a="0"/>
     </Font>
+
+    <Font name="AM_Font_ChatSystem" inherits="AM_Font_Chat" virtual="true">
+        <Color r="1" g="1" b="1" a="0.4"/>
+    </Font>
 </Ui>
